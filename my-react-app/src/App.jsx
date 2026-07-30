@@ -1,80 +1,25 @@
-import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router";
-import EscolherJogo from "./pages/EscolherJogo.jsx";
-import Palpites from "./pages/Palpites.jsx";
-import Partida from "./pages/Partida.jsx";
-import "./App.css";
 
-function lerArmazenamento(chave) {
-  try {
-    const valor = localStorage.getItem(chave);
-    return valor ? JSON.parse(valor) : null;
-  } catch {
-    return null;
-  }
-}
+import { useState } from 'react';
+import LoginStatus from './LoginStatus';
+import Notification from './Notification';
 
 function App() {
-  const [jogo, setJogo] = useState(() =>
-    lerArmazenamento("estrela-games-jogo")
-  );
-
-  const [palpites, setPalpites] = useState(() =>
-    lerArmazenamento("estrela-games-palpites")
-  );
-
-  useEffect(() => {
-    if (jogo) {
-      localStorage.setItem(
-        "estrela-games-jogo",
-        JSON.stringify(jogo)
-      );
-    }
-  }, [jogo]);
-
-  useEffect(() => {
-    if (palpites) {
-      localStorage.setItem(
-        "estrela-games-palpites",
-        JSON.stringify(palpites)
-      );
-    }
-  }, [palpites]);
-
-  function criarJogo(novoJogo) {
-    setJogo(novoJogo);
-    setPalpites(null);
-    localStorage.removeItem("estrela-games-palpites");
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showNotif, setShowNotif] = useState(false);
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<EscolherJogo aoCriarJogo={criarJogo} />}
-      />
-
-      <Route
-        path="/palpites"
-        element={
-          <Palpites
-            jogo={jogo}
-            aoConfirmarPalpites={setPalpites}
-          />
-        }
-      />
-
-      <Route
-        path="/partida"
-        element={
-          <Partida
-            jogo={jogo}
-            palpites={palpites}
-          />
-        }
-      />
-    </Routes>
+    <div>
+      <LoginStatus isLoggedIn={isLoggedIn} />
+      <Notification showNotification={showNotif} />
+      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        {isLoggedIn ? 'Logout' : 'Login'}
+      </button>
+      <button onClick={() => setShowNotif(!showNotif)}>
+        {showNotif ? 'Ocultar' : 'Mostrar'} Notificação
+      </button>
+    </div>
   );
 }
 
 export default App;
+          
