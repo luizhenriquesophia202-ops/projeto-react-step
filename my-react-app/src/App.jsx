@@ -1,25 +1,38 @@
-
-import { useState } from 'react';
-import LoginStatus from './LoginStatus';
-import Notification from './Notification';
+import { useState } from "react";
+import LoginStatus from "./components/LoginStatus.jsx";
+import Notification from "./components/Notification.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showNotif, setShowNotif] = useState(false);
+  const [hasNotification, setHasNotification] = useState(false);
+
+  function alterarLogin() {
+    setIsLoggedIn(!isLoggedIn);
+  }
+
+  function alterarNotificacao() {
+    setHasNotification(!hasNotification);
+  }
 
   return (
-    <div>
+    <main>
+      <h1>Renderização Condicional</h1>
+
       <LoginStatus isLoggedIn={isLoggedIn} />
-      <Notification showNotification={showNotif} />
-      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
-        {isLoggedIn ? 'Logout' : 'Login'}
+
+      <button onClick={alterarLogin}>
+        {isLoggedIn ? "Sair" : "Entrar"}
       </button>
-      <button onClick={() => setShowNotif(!showNotif)}>
-        {showNotif ? 'Ocultar' : 'Mostrar'} Notificação
+
+      <Notification hasNotification={hasNotification} />
+
+      <button onClick={alterarNotificacao}>
+        {hasNotification
+          ? "Remover notificação"
+          : "Mostrar notificação"}
       </button>
-    </div>
+    </main>
   );
 }
 
 export default App;
-          
