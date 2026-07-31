@@ -1,14 +1,15 @@
 
 import React from 'react';
-import ListaDeProdutos from './components/ListaDeProdutos';
+import ListaFiltrada from './components/ListaFiltrada';
 
 function App() {
   return (
     <div>
-      <ListaDeProdutos />
+      <ListaFiltrada />
     </div>
   );
 }
 
 export default App;
+                
           
