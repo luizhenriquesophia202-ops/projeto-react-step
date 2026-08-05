@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoginStatus from "./components/LoginStatus.jsx";
 import Notification from "./components/Notification.jsx";
+import ButtonTailwind from "./components/aula7/ButtonTailwind.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,21 +17,9 @@ function App() {
 
   return (
     <main>
-      <h1>Renderização Condicional</h1>
-
-      <LoginStatus isLoggedIn={isLoggedIn} />
-
-      <button onClick={alterarLogin}>
-        {isLoggedIn ? "Sair" : "Entrar"}
-      </button>
-
-      <Notification hasNotification={hasNotification} />
-
-      <button onClick={alterarNotificacao}>
-        {hasNotification
-          ? "Remover notificação"
-          : "Mostrar notificação"}
-      </button>
+      <h1>Botão com Tailwind CSS</h1>
+      <ButtonTailwind label="Primário" primary />
+      <ButtonTailwind label="Secundário" />
     </main>
   );
 }
