@@ -1,7 +1,7 @@
 
-import Usuarios from './Usuarios';
-import Posts from './Posts';
-import ListaUsuarios from './ListaUsuarios';
+import Usuarios from './components/aula8/Usuarios';
+import Posts from './components/aula8/Posts';
+import ListaUsuarios from './components/aula8/ListaUsuarios';
 function App() {
   return (
     <div>
@@ -13,8 +13,7 @@ function App() {
   );
 }
 export default App;
-          
-          
+        
 
           
           
